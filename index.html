@@ -42,16 +42,18 @@
       --color-intro-accent: var(--bright-yellow);
       --color-intro-text: var(--grayish-blue);
 
-      --color-main-background: var(--cyan);
-      --color-main-text: var(--light-gray);
-      --color-main-subtext: var(--grayish-blue);
-      --color-main-button: var(--bright-yellow);
+      --color-subscribe-background: var(--cyan);
+      --color-subscribe-text: var(--light-gray);
+      --color-subscribe-subtext: var(--grayish-blue);
+      --color-subscribe-button: var(--bright-yellow);
 
       --color-why-background: var(--cyan);
 
       --color-background: var(--light-gray);
       --color-shadow: hsl(218, 51%, 85%);
     }
+
+    /* General */
 
     body {
       background-color: var(--color-background);
@@ -75,34 +77,8 @@
       grid-template-columns: 1fr;
     }
 
-    @media (min-width: 500px) {
-      main {
-        /* Min value of clamp to avoid margin suddenly shrinking at breakpoint.
-        Max value to avoid text too wide on large screens.*/
-        width: clamp(calc(500px * 0.85), 66%, 60rem);
-        /* min-width: calc(500px * 0.85);
-        width: 66%;
-        max-width: 60em; */
-      }
-
-      main {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .intro {
-        grid-column: span 2;
-      }
-
-      .button-link:hover {
-        box-shadow: 0px 10px 20px 8px hsl(179, 32%, 43%);
-        transform: translate(-2px, -2px);
-      }
-    }
-
-    /* General */
-
     .intro,
-    .main,
+    .subscribe,
     .why {
       padding-inline: 1.5rem;
       padding-block: 2rem;
@@ -127,12 +103,12 @@
       font-weight: bold;
       font-size: 1.2rem;
       border-radius: 5px;
-      /* hard to get a color that goes well with colored background? */
-      box-shadow: 0px 8px 10px 1px hsl(179, 42%, 43%);
 
+      transition: box-shadow .2s;
     }
 
-    /* intro */
+
+    /* intro section*/
     .intro {
       color: var(--color-intro-text);
     }
@@ -151,11 +127,11 @@
       padding-bottom: 1rem;
     }
 
-    /* bad idea to use .main : confusion with <main> */
-    /* main */
-    .main {
-      background-color: var(--color-main-background);
-      color: var(--color-main-text);
+
+    /* subscribe section */
+    .subscribe {
+      background-color: var(--color-subscribe-background);
+      color: var(--color-subscribe-text);
       font-size: 1.2rem;
     }
 
@@ -177,11 +153,12 @@
       letter-spacing: min(.05rem, 2px);
     }
 
-    .main .button-link {
+    .subscribe .button-link {
       margin-top: 1.5rem;
     }
 
-    /* why us */
+
+    /* why us section*/
     .why {
       background-color: var(--color-why-background);
       filter: brightness(107%);
@@ -200,6 +177,35 @@
     .attribution a {
       color: hsl(228, 45%, 44%);
     }
+
+
+    @media (min-width: 500px) {
+      main {
+        /* Min value of clamp to avoid margin suddenly shrinking at breakpoint.
+        Max value to avoid text too wide on large screens.*/
+        width: clamp(calc(500px * 0.85), 66%, 60rem);
+        /* min-width: calc(500px * 0.85);
+        width: 66%;
+        max-width: 60em; */
+      }
+
+      main {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .intro {
+        grid-column: span 2;
+      }
+
+      .button-link {
+        box-shadow: 2px 6px 10px 0px hsla(0, 0%, 0%, 0.1);
+      }
+
+      .button-link:is(:hover, :focus) {
+        box-shadow: none;
+        transform: translate(1px, 1px);
+      }
+    }
   </style>
 </head>
 
@@ -213,7 +219,7 @@
         Perfect for any developers who are serious about honing their skills.
       </p>
     </section>
-    <section class="main">
+    <section class="subscribe">
       <h2>Monthly Subscription</h2>
       <div class="price">
         <span class="price-amount">&dollar;29</span>
@@ -238,7 +244,7 @@
   <footer>
     <p class="attribution">
       Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
-      Coded by <a href="#">Your Name Here</a>.
+      Coded by <a href="#">Thomas Burette</a>.
     </p>
   </footer>
 </body>

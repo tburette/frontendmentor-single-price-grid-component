@@ -78,6 +78,15 @@ To prevent the design to suddenly shift at the breakpoint I used this:
 }
 ```
 
+Changes in version 1.1:
+- fix button shadow color : use semi transparent black instead of custom green
+- button goes down when hovered/focused instead of going up
+- button hover effect on desktop only
+- make the button hover effect work when the button is focused
+- reorder css
+- rename section .main to section .subscribe
+- added my name in the attribution
+
 ### Continued development
 
 I should think of using a standard CSS reset for all future projects 
