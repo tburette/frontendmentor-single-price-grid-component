@@ -31,8 +31,6 @@ Users should be able to:
 ![](./screenshot.png)
 
 
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
-
 ### Links
 - Solution URL: https://github.com/tburette/frontendmentor-single-price-grid-component
 - Live Site URL: https://tburette.github.io/frontendmentor-single-price-grid-component
