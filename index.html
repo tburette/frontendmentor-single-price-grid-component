@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Single Price Grid Component</title>
+
+  <!-- random cdn I found with the font used.
+    Doesn't seem to quite match the design given -->
+  <link href="https://fonts.cdnfonts.com/css/karla" rel="stylesheet">
+
+  <!-- In the real world I would put the style in its own file-->
+  <style>
+    /* I should think of using a standard CSS reset for all future projects 
+    instead of recreating one each time depending on the needs.
+    Which one? One with min-width: 0; to avoid the annoying builtin min-width
+    on some elements such as <input type="text"> that tend to break 
+    flex designs when it becomes narrow*/
+    * {
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    :root {
+      font-family: 'Karla', sans-serif;
+      font-weight: 400;
+
+      /* Colors given in the challenge instructions */
+      --cyan: hsl(179, 62%, 43%);
+      --bright-yellow: hsl(71, 73%, 54%);
+      --light-gray: hsl(204, 43%, 93%);
+      --grayish-blue: hsl(218, 22%, 67%);
+
+      /* Redefine the colors in semantic terms. overkill for this small task.
+      Could be useful as part of a design system in a larger site */
+
+      --color-intro-title: var(--cyan);
+      --color-intro-accent: var(--bright-yellow);
+      --color-intro-text: var(--grayish-blue);
+
+      --color-main-background: var(--cyan);
+      --color-main-text: var(--light-gray);
+      --color-main-subtext: var(--grayish-blue);
+      --color-main-button: var(--bright-yellow);
+
+      --color-why-background: var(--cyan);
+
+      --color-background: var(--light-gray);
+      --color-shadow: hsl(218, 51%, 85%);
+    }
+
+    body {
+      background-color: var(--color-background);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    main {
+      color: var(--light-gray);
+      background-color: white;
+
+      width: 85%;
+      margin-block: 4rem;
+      border-radius: .3rem;
+
+      box-shadow: 0px 8px 20px 1px var(--color-shadow);
+
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 500px) {
+      main {
+        /* Min value of clamp to avoid margin suddenly shrinking at breakpoint.
+        Max value to avoid text too wide on large screens.*/
+        width: clamp(calc(500px * 0.85), 66%, 60rem);
+        /* min-width: calc(500px * 0.85);
+        width: 66%;
+        max-width: 60em; */
+      }
+
+      main {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .intro {
+        grid-column: span 2;
+      }
+
+      .button-link:hover {
+        box-shadow: 0px 10px 20px 8px hsl(179, 32%, 43%);
+        transform: translate(-2px, -2px);
+      }
+    }
+
+    /* General */
+
+    .intro,
+    .main,
+    .why {
+      padding-inline: 1.5rem;
+      padding-block: 2rem;
+    }
+
+    h1,
+    h2 {
+      margin-bottom: .5rem;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+    }
+
+    .button-link {
+      color: white;
+      background-color: var(--bright-yellow);
+      display: block;
+      padding: .5em;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2rem;
+      border-radius: 5px;
+      /* hard to get a color that goes well with colored background? */
+      box-shadow: 0px 8px 10px 1px hsl(179, 42%, 43%);
+
+    }
+
+    /* intro */
+    .intro {
+      color: var(--color-intro-text);
+    }
+
+    .intro h1 {
+      color: var(--color-intro-title);
+    }
+
+    .intro p {
+      line-height: 1.7;
+    }
+
+    .intro .tagline {
+      color: var(--color-intro-accent);
+      font-weight: bold;
+      padding-bottom: 1rem;
+    }
+
+    /* bad idea to use .main : confusion with <main> */
+    /* main */
+    .main {
+      background-color: var(--color-main-background);
+      color: var(--color-main-text);
+      font-size: 1.2rem;
+    }
+
+    /* could have used a BEM for price*/
+    .price {
+      display: flex;
+      align-items: center;
+    }
+
+    .price-amount {
+      font-weight: bold;
+      font-size: 2rem;
+      padding-right: 1rem;
+    }
+
+    .price-duration {
+      opacity: .7;
+      font-size: 1rem;
+      letter-spacing: min(.05rem, 2px);
+    }
+
+    .main .button-link {
+      margin-top: 1.5rem;
+    }
+
+    /* why us */
+    .why {
+      background-color: var(--color-why-background);
+      filter: brightness(107%);
+    }
+
+    .why ul {
+      list-style: none;
+      padding: 0px;
+    }
+
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <section class="intro">
+      <h1>Join our community</h1>
+      <div class="tagline">30-day, hassle-free money back guarantee</div>
+      <p>
+        Gain access to our full library of tutorials along with expert code reviews.
+        Perfect for any developers who are serious about honing their skills.
+      </p>
+    </section>
+    <section class="main">
+      <h2>Monthly Subscription</h2>
+      <div class="price">
+        <span class="price-amount">&dollar;29</span>
+        <span class="price-duration">per month</span>
+      </div>
+      <p>Full access for less than &dollar;1 a day</p>
+      <a href="" class="button-link">Sign Up</a>
+    </section>
+    <section class="why">
+      <h2>Why Us</h2>
+      <ul>
+        <li>Tutorials by industry experts</li>
+        <li>Peer &amp; expert code review</li>
+        <li>Coding exercises</li>
+        <li>Access to our GitHub repos</li>
+        <li></li>Community forum</li>
+        <li></li>Flashcard decks</li>
+        <li></li>New videos every week</li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <p class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+      Coded by <a href="#">Your Name Here</a>.
+    </p>
+  </footer>
+</body>
+
+</html>
